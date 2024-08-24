@@ -9,7 +9,7 @@ namespace OnlineCateringProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly OnlineCateringContext _context;    
+        private readonly OnlineCateringContext _context;
         public HomeController(ILogger<HomeController> logger, OnlineCateringContext context)
         {
             _logger = logger;
@@ -25,7 +25,7 @@ namespace OnlineCateringProject.Controllers
             return View(menu);
         }
 
-       
+
         public IActionResult About()
         {
             return View();
@@ -33,8 +33,8 @@ namespace OnlineCateringProject.Controllers
         [AuthForAccess]
         public IActionResult Booking(int id)
         {
-            var name =  _context.Caterers.Where(x => x.CatererId == id).Select(x => x.Name).FirstOrDefault();
-            var menu =  _context.Menus.Where(x => x.CatererId == id).ToList();
+            var name = _context.Caterers.Where(x => x.CatererId == id).Select(x => x.Name).FirstOrDefault();
+            var menu = _context.Menus.Where(x => x.CatererId == id).ToList();
             List<Order> orders = new();
             menu.ForEach(x =>
             {
@@ -44,29 +44,26 @@ namespace OnlineCateringProject.Controllers
                     Price = x.Price,
                     Quantity = 0,
                     Name = name
-                }; 
-                orders.Add(order); 
+                };
+                orders.Add(order);
             });
-            var userName = HttpContext.Session.GetString("UserName");
-            if (userName != null)
+
+            var model = new BookingRequest
             {
-                var model = new BookingRequest
-                {
-                    CatererId = id,
-                    
+                CatererId = id,
+
                 Orders = orders,
 
-                    // Các thông tin mặc định
-                };
-            }
-          
+                // Các thông tin mặc định
+            };
+
             return View(model);
         }
         public async Task<IActionResult> Menu()
 
         {
             var soup = await _context.Menus
-                                        .Where(m=>m.CategoryId == '1')
+                                        .Where(m => m.CategoryId == '1')
                                         .OrderBy(m => Guid.NewGuid()) // Sắp xếp ngẫu nhiên
                                         .Take(3) // Lấy 3 bản ghi đầu tiên
                                         .ToListAsync();
@@ -107,8 +104,8 @@ namespace OnlineCateringProject.Controllers
             return View(model);
         }
         public async Task<IActionResult> Catering()
-        {   
-            var model = _context.Caterers.OrderBy(m=> Guid.NewGuid()).Take(3).ToListAsync();
+        {
+            var model = _context.Caterers.OrderBy(m => Guid.NewGuid()).Take(3).ToListAsync();
             return View(model);
         }
         public async Task<IActionResult> Details(int id)
