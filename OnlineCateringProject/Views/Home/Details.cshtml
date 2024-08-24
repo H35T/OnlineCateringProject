@@ -1,0 +1,66 @@
+﻿@model OnlineCateringProject.Models.CatererDetailsViewModel
+
+@{
+    ViewData["Title"] = "Exceptional catering";
+    ViewData["Span"] = "For your special day";
+    ViewData["Background"] = "page-title-4";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- .page-content start -->
+<div class="page-content">
+    <div class="container">
+
+        <!-- .row start -->
+        <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-12 blog-details">
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-12 blog-posts blog-details">
+                <div class="blog-post clearfix">
+
+                    <div class="post-media">
+                        <img src="~/img/blog/blog-5.jpg" alt="Royal Plate - Restaurant & Catering HTML Template" />
+                    </div><!-- .post-media end -->
+                    <article class="post-body">
+                        <div class="custom-heading style-2">
+                            <h3>@Model.Name</h3>
+                            <div class="divider style-1">
+                                <i class="fa fa-circle hr-icon left"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div><!-- .custom-heading.style-2 end -->
+                        <p>
+                            Every week we bring you fresh recipes ideas for your table. This week we decided to feature some of our
+                            autumn table specials. It’s the perfect time of the year for using chestnuts in your everyday dishes!
+                        </p>
+                        <p>
+                            Today special is royal beef steak with chestnut and pumpkin sauce with potato cream and grilled mushrooms.
+                            It’s pretty simple recipe (for beginners) and only takes about 50 minutes for preparation. Simple, fast and
+                            delicious! So grab your fork and apron and let’s start our new cooking adventure...
+                        </p>
+                        <h5>Menu infomation</h5>
+                        <ul class="circle-list-style-type">
+                            @foreach (var item in Model.Menu)
+                            {
+                                <li>@item.ItemName -  @item.Describe</li>
+                            }
+                        </ul>
+                    
+                    
+                        <p>That’s it! You are ready to taste something delicious! Let us know what you think!</p>
+
+                        <div class="col-md-4 col-sm-6">
+                            <a asp-action="Booking" asp-route-id="@Model.id" asp-controller="Home" class="btn btn-big black"><span>Go to fill form</span></a>
+                        </div>
+                  
+                    </article><!-- .post-body end -->
+
+                </div><!-- .blog-post end -->
+             
+         
+
+            </div><!-- .col-md-12.blog-posts end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->

@@ -1,0 +1,337 @@
+﻿
+@{
+    ViewData["Title"] = "Delicious Cousine";
+    ViewData["Span"] = "Discover the menu";
+    ViewData["Background"] = "page-title-2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OnlineCateringProject.Models.ListMenuClass
+<div class="page-content bkg-img-right bkg-img8">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row mb-40">
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered mb-0">
+                <div class="custom-heading style-1">
+                    <h3><span>For start</span></h3>
+                    <h3>Starters</h3>
+
+                    <!-- .divider.style-1 start -->
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="fa fa-circle hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-1 end -->
+            </div><!-- .col-md-12 end -->
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered mb-0">
+                <p>
+                    Keith Simons, chef de cousine in Royal plate has prepared some delicious starters for
+                    every taste. Try some of our home made soups made from fresh ingredients or some of
+                    our refreshing salads. Bon appetit!
+                </p>
+            </div><!-- .col-md-12 end -->
+        </div><!-- .row end -->
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <div class="custom-heading style-2">
+                    <h4>Soups</h4>
+                    <div class="divider style-1">
+                        <i class="fa fa-circle hr-icon left"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-2 end -->
+                <ul class="menu-style-1">
+                     @{
+                        int menuIndex = 4;
+                    }
+                    @foreach (var menu in Model.Soup)
+                    {
+                        var imgname = "../img/pics/menu-item-0" + menuIndex + ".png";
+                    <li class="menu-item">
+                        <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                        <div class="menu-item-description">
+                            <h5>@menu.ItemName</h5>
+                            <p>@menu.Describe</p>
+                        </div>
+                        <div class="menu-item-price">
+                            <p>$@menu.Price</p>
+                        </div>
+                        </li>
+                        menuIndex++;
+                    }
+                 
+                </ul>
+            </div><!-- .col-md-6 end -->
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <div class="custom-heading style-2">
+                    <h4>Salads</h4>
+                    <div class="divider style-1">
+                        <i class="fa fa-circle hr-icon left"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-2 end -->
+                <ul class="menu-style-1">
+                    @{
+                        int menuIndex2 = 6;
+                    }
+                    @foreach (var menu in Model.Salad)
+                    {
+                        var imgname = "../img/pics/menu-item-0" + menuIndex2 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex2++;
+                    }
+                    
+                </ul>
+            </div><!-- .col-md-6 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->
+<!-- .page-content start -->
+<div class="page-content custom-background bkg-grey bkg-img-left-vertical-center bkg-img9 pt-100">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row mb-40">
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered">
+                <div class="custom-heading style-1">
+                    <h3><span>More concrete</span></h3>
+                    <h3>Main dishes</h3>
+
+                    <!-- .divider.style-1 start -->
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="fa fa-circle hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-1 end -->
+            </div><!-- .col-md-12 end -->
+        </div><!-- .row end -->
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <ul class="menu-style-1">
+                    @{
+                        int menuIndex3 = 7;
+                    }
+                    @foreach (var menu in Model.MainDishes)
+                    {
+                        var imgname = "../img/pics/menu-item-0" + menuIndex3 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex3++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <ul class="menu-style-1">
+                    @foreach (var menu in Model.MainDishes)
+                    {
+                        var imgname = "../img/pics/menu-item-" + menuIndex3 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex3++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->
+<!-- .page-content start -->
+<div class="page-content">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row mb-40">
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered">
+                <div class="overflow-hidden">
+                    <img src="~/img/pics/img-07.png" alt="Royal Plate - Restaurant & Catering HTML Template" class="triggerAnimation animated" data-animate='fadeInDown' />
+                </div>
+            </div><!-- .col-md-12 end -->
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered">
+                <div class="custom-heading style-1">
+                    <h3><span>Tasty</span></h3>
+                    <h3>Deserts</h3>
+
+                    <!-- .divider.style-1 start -->
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="fa fa-circle hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-1 end -->
+            </div><!-- .col-md-12 end -->
+        </div><!-- .row end -->
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-6 start -->
+            <div class="col-md-6">
+                <ul class="menu-style-1">
+                    @{
+                        int menuIndex4 = 10;
+                    }
+                    @foreach (var menu in Model.Deserts)
+                    {
+                        var imgname = "../img/pics/menu-item-" + menuIndex4 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex4++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+            <!-- .col-md-6 start -->
+            <div class="col-md-6">
+                <ul class="menu-style-1">
+                    @foreach (var menu in Model.Deserts)
+                    {
+                        var imgname = "../img/pics/menu-item-" + menuIndex4 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex4++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->
+<!-- .page-content start -->
+<div class="page-content custom-img-background dark bkg-img10 custom-col-padding mb-100">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-12 start -->
+            <div class="col-md-12 centered">
+                <div class="custom-heading style-1 triggerAnimation animated" data-animate='fadeInUp'>
+                    <h2><span>Special Offers</span></h2>
+                    <h2>Lunch & dinner menus</h2>
+
+                    <!-- .divider.style-2 start -->
+                    <div class="divider style-2 center">
+                        <span class="hr-double left"></span>
+                        <span class="divider-svg">
+                            <img src="~/img/svg/heading-icon.svg" alt="Royal Plate Restaurant & Catering HTML Template">
+                        </span>
+                        <span class="hr-double right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-1 end -->
+            </div><!-- .col-md-12 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->
+<!-- .page-content start -->
+<div class="page-content">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <div class="custom-heading style-2">
+                    <h4>Lunch menus</h4>
+                    <div class="divider style-1">
+                        <i class="fa fa-circle hr-icon left"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-2 end -->
+                <ul class="menu-style-1">
+                    @{
+                        int menuIndex5 = 4;
+                    }
+                    @foreach (var menu in Model.Lunch)
+                    {
+                        var imgname = "../img/pics/menu-item-0" + menuIndex5 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex5++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+            <!-- .col-md-6 start -->
+            <div class="col-md-6 triggerAnimation animated" data-animate='fadeIn'>
+                <div class="custom-heading style-2">
+                    <h4>Dinner menus</h4>
+                    <div class="divider style-1">
+                        <i class="fa fa-circle hr-icon left"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-2 end -->
+                <ul class="menu-style-1">
+                    @{
+                        int menuIndex6 = 7;
+                    }
+                    @foreach (var menu in Model.Dinner)
+                    {
+                        var imgname = "../img/pics/menu-item-0" + menuIndex6 + ".png";
+                        <li class="menu-item">
+                            <div class="menu-item-thumbnail"><img src="@imgname" alt="Royal Plate - Restaurant & Catering HTML Template" /></div>
+                            <div class="menu-item-description">
+                                <h5>@menu.ItemName</h5>
+                                <p>@menu.Describe</p>
+                            </div>
+                            <div class="menu-item-price">
+                                <p>$@menu.Price</p>
+                            </div>
+                        </li>
+                        menuIndex6++;
+                    }
+                </ul>
+            </div><!-- .col-md-6 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end -->

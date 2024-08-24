@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+    ViewData["Span"] = "Edit Infomation";
+    ViewData["Background"] = "page-title-7";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model OnlineCateringProject.Models.ProfileViewModel
+<!-- .page-content start -->
+<div class="page-content">
+    <div class="container">
+        <!-- .row start -->
+        <div class="row">
+            <!-- .col-md-4 start -->
+            <div class="col-md-4 col-sm-3 hidden-xs pt-100">
+                @*<img src="../img/pics/img-02.jpg" alt="Royal Plate - Restaurant & Catering HTML Template" />*@
+            </div><!-- .col-md-4 end -->
+            <!-- .col-md-4 start -->
+            <div class="col-md-4 col-sm-6 centered pt-150 open-table-widget-style-1">
+                <div class="custom-heading style-1">
+                    <h3><span>Infomation</span></h3>
+                    @*<h3>Fill infomation</h3>*@
+
+                    <!-- .divider.style-1 start -->
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="fa fa-circle hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div><!-- .custom-heading.style-1 end -->
+                <!-- Open table widget start -->
+                <div class="otw-bare-bones-style widget open-table-widget triggerAnimation animated" data-animate='fadeIn'>
+                    <div class="otw-bare-bones">
+                        <div class="otw-widget-form-wrap">
+                            <form asp-action="Edit" class="otw-widget-form">
+                                <div class="otw-wrapper">
+                                    <div class="text-danger" asp-validation-summary="All"></div>
+
+ @*                                   <div class="otw-name-wrap otw-input-wrap">
+                                        <input asp-for="Name" name="Name" class="otw-reservation-name" type="text" placeholder="Your username">
+
+                                    </div>
+                                    <div class="otw-password-wrap otw-input-wrap">
+                                        <input asp-for="OldPassword" name="OldPassword" class="otw-reservation-password" type="password" placeholder="Your old password">
+                                    </div>
+                                    <div class="otw-password-wrap otw-input-wrap">
+                                        <input asp-for="Password" name="Password" class="otw-reservation-password" type="password" placeholder="Your new password">
+                                    </div>*@
+                                    <div class="otw-name-wrap otw-input-wrap">
+                                        <input asp-for="Address" name="Address" class="otw-reservation-name" type="text" placeholder="Your Address">
+
+                                    </div>
+                                    <div class="otw-name-wrap otw-input-wrap">
+                                        <input asp-for="PinCode" name="PinCode" class="otw-reservation-name" type="text" placeholder="Your PinCode">
+
+                                    </div>
+                                    <div class="otw-name-wrap otw-input-wrap">
+                                        <input asp-for="Phone" name="Phone" class="otw-reservation-name" type="text" placeholder="Your Phone">
+
+                                    </div>
+                                    <div class="otw-name-wrap otw-input-wrap">
+                                        <input asp-for="Mobile" name="Mobile" class="otw-reservation-name" type="text" placeholder="Your Mobile">
+
+                                    </div>
+             
+                                    <div class="otw-button-wrap">
+                                        <input type="submit" class="otw-submit" value="Update">
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .otw-widget-form-wrap end -->
+                    </div>
+                </div><!-- Open table widget end -->
+            </div><!-- .col-md-4 end -->
+            <!-- .col-md-4 start -->
+            <div class="col-md-4 col-sm-3 hidden-xs pt-100">
+                @*<img src="../img/pics/img-03.jpg" alt="Royal Plate - Restaurant & Catering HTML Template" />*@
+            </div><!-- .col-md-4 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content end --> 

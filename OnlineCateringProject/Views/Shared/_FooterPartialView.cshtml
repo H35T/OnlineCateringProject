@@ -1,0 +1,110 @@
+﻿
+<div id="footer-wrapper">
+    <!-- #footer start -->
+    <footer id="footer">
+        <!-- .container start -->
+        <div class="container">
+            <!-- .row start -->
+            <div class="row mb-60">
+                <!-- .col-md-4 start -->
+                <div class="col-md-4">
+                </div><!-- .col-md-4 end-->
+                <!-- .col-md-4 start -->
+                <div class="col-md-4 centered">
+                    <a href="index-2.html">
+                        <img src="~/img/logo.png" alt="Royal Plate Restaurant & Catering HTML Template">
+                    </a>
+
+                    <ul class="contact-info-list">
+                        <li>
+                            22 Royal Street, Sundance Avenue, New York
+                        </li>
+                        <li>
+                            <span>RESERVATIONS NUMBER:</span> +00 25 854 78521
+                        </li>
+
+                        <li>
+                            <span>WORKING HOURS:</span>
+                        </li>
+
+                        <li>
+                            MON- FRI: 08:00 AM - 10:00 PM
+                        </li>
+                        <li>SAT - SUN: 10:00 AM - 11:00 PM</li>
+                    </ul>
+                </div><!-- .col-md-4 end -->
+                <!-- .col-md-4 start -->
+                <div class="col-md-4">
+                </div><!-- .col-md-4 end-->
+            </div><!-- .row end -->
+            <!-- .row start -->
+        </div><!-- .container end -->
+    </footer><!-- #footer end -->
+</div><!-- #footer-wrapper end -->
+
+<script src="~/js/jquery-2.1.4.min.js"></script><!-- jQuery library -->
+<script src="~/js/bootstrap.min.js"></script><!-- .bootstrap script -->
+<script src="~/js/jquery.scripts.min.js"></script><!-- modernizr, retina, stellar for parallax -->
+<script src="~/js/jquery.dlmenu.min.js"></script><!-- for responsive menu -->
+<script src="~/js/include.js"></script><!-- custom js functions -->
+<script src="~/js/jquery.nivo.slider.pack.js"></script><!-- Nivo Slider script -->
+<script src="~/owl-carousel/owl.carousel.min.js"></script><!-- Carousels script -->
+<script src="~/js/TweenMax.min.js"></script> <!-- Plugin for smooth scrolling-->
+<script src="~/js/ScrollToPlugin.min.js"></script> <!-- Plugin for smooth scrolling-->
+
+<script>
+    /* <![CDATA[ */
+    jQuery(document).ready(function ($) {
+        'use strict';
+
+        $('#featured-menu-nivo-slider').nivoSlider({
+            controlNav: false
+        });
+
+        // FEATURED MENU CAROUSEL START
+        $('#featured-menu-carousel').owlCarousel({
+            items: 3, //3 items above 1000px browser width
+            itemsCustom: [[0, 1], [600, 2], [1000, 3]],
+            autoPlay: true,
+            pagination: false,
+            navigation: true
+        });
+
+        // FANCY TESTIMONIAL CAROUSEL START
+        $('#fancy-testimonial-carousel').owlCarousel({
+            singleItem: true,
+            autoPlay: true,
+            pagination: false,
+            navigation: false
+        });
+        // TESTIMONIAL STYLE 1 CAROUSEL START
+        $('#testimonial-style-1-carousel').owlCarousel({
+            singleItem: true,
+            autoPlay: true,
+            pagination: false,
+            navigation: false
+        });
+
+        // TESTIMONIAL STYLE 2 CAROUSEL START
+        $('#testimonial-style-2-carousel').owlCarousel({
+            singleItem: true,
+            autoPlay: true,
+            pagination: false,
+            navigation: false
+        });
+        // TESTIMONIAL STYLE 3 CAROUSEL START
+        $('#testimonial-style-3-carousel').owlCarousel({
+            singleItem: true,
+            autoPlay: true,
+            pagination: false,
+            navigation: false
+        });
+
+
+
+    });
+                        /* ]]> */
+</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

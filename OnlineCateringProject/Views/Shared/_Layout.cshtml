@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Online Catering</title>
+    <meta name="description" content="Royal Plate is a HTML template created for restaurants and catering companies.">
+    <meta name="author" content="pixel-industry">
+    <meta name="keywords" content="CSS, HTML5, clean, restaurant, jQuery, retina, bootstrap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" /><!-- bootstrap grid -->
+    <link rel="stylesheet" href="~/css/bootstrap-theme.min.css" /><!-- bootstrap theme -->
+    <link rel="stylesheet" href="~/css/style.css" /><!-- template styles -->
+    <link rel="stylesheet" href="~/css/color-default.css" /><!-- default template color styles -->
+    <link rel="stylesheet" href="~/css/retina.css" /><!-- retina ready styles -->
+    <link rel="stylesheet" href="~/css/responsive.css" /><!-- responsive styles -->
+    <link rel="stylesheet" href="~/css/animate.css" /><!-- animation for content -->
+    <link rel="stylesheet" href="~/css/nivo-slider.css" /><!-- Nivo Slider styles -->
+    <link rel='stylesheet' href='~/owl-carousel/owl.carousel.css' /><!-- Carousels css -->
+    <link rel='stylesheet' href='~/owl-carousel/owl.theme.css' /><!-- Carousels -->
+    <!-- Google Web fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Suranna' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montez' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Font icons -->
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css" /><!-- Font awesome icons -->
+</head>
+<body>
+
+    @await Html.PartialAsync("_HeaderPartialView")
+    @RenderBody()
+    @await Html.PartialAsync("_FooterPartialView")
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

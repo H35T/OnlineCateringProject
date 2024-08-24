@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OnlineCateringProject.Models.Menu>
+
+@{
+    ViewData["Title"] = "List Menu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Describe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caterer)
+            </th>
+            <th><a asp-action="Create">Create New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caterer.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MenuItemNo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MenuItemNo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MenuItemNo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
