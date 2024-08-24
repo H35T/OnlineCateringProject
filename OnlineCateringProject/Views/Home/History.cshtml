@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "History";
+    ViewData["Span"] = "List Bill";
+    ViewData["Background"] = "page-title-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<OnlineCateringProject.Models.CustomerInvoice>
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            @if (Model != null)
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Invoice No</th>
+                            <th>Invoice Date</th>
+                            <th>Order No</th>
+                            <th>Total Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var invoice in Model)
+                        {
+                            <tr>
+                                <td>@invoice.InvoiceNo</td>
+                                <td>@invoice.InvoiceDate.ToString("dd/MM/yyyy")</td>
+                                <td>@invoice.OrderNo</td>
+                                <td>@invoice.TotalAmount?.ToString("C")</td>
+                                <td>
+                                    <a href="@Url.Action("detailBill", "Home", new { id = invoice.InvoiceNo })" class="btn btn-info">View Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    No invoices found.
+                </div>
+            }
+
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</div>

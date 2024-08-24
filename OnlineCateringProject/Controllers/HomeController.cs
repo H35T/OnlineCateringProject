@@ -43,7 +43,7 @@ namespace OnlineCateringProject.Controllers
                     MenuItemNo = x.MenuItemNo,
                     Price = x.Price,
                     Quantity = 0,
-                    Name = name
+                    Name = x.ItemName
                 };
                 orders.Add(order);
             });
@@ -122,7 +122,165 @@ namespace OnlineCateringProject.Controllers
 
             return View(model);
         }
+        public IActionResult History()
+        {
+            var userName = HttpContext.Session.GetString("UserName");
+            var userType = HttpContext.Session.GetString("UserType");
+            int userId;
+            if(userType == "Customer")
+            {
+                userId = _context.Customers.Where(x=>x.Name == userName).Select(id=>id.CustomerId).FirstOrDefault();
+                var model = _context.CustomerInvoices.Where(x=>x.CustomerId == userId).ToList();
+                return View(model);
 
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> detailBill(int id)
+        {
+            try
+            {
+                // Fetch the invoice details
+                var bill = await _context.CustomerInvoices
+                    .Where(x => x.InvoiceNo == id)
+                    .Select(x => new InvoiceModel
+                    {
+                        InvoiceNo = x.InvoiceNo,
+                        InvoiceDate = x.InvoiceDate,
+                        TotalAmount = x.TotalAmount
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (bill == null)
+                {
+                    return NotFound("Invoice not found.");
+                }
+
+                // Fetch the associated order details
+                var order = await (from o in _context.CustOrders
+                                   join c in _context.CustomerInvoices on o.OrderNo equals c.OrderNo
+                                   where c.InvoiceNo == bill.InvoiceNo
+                                   select new OrderModel
+                                   {
+                                       OrderNo = o.OrderNo,
+                                       OrderDate = o.OrderDate,
+                                       CatererId = o.CatererId,
+                                       CustomerId = o.CustomerId,
+                                       DeliveryAddress = o.DeliveryAddress,
+                                       MaxPeople = o.MaxPeople,
+                                       MinPeople = o.MinPeople,
+                                       DeliveryDate = o.DeliveryDate,
+                                       OrderStatus = o.OrderStatus
+                                   })
+                                   .FirstOrDefaultAsync();
+
+                if (order == null)
+                {
+                    return NotFound("Order not found.");
+                }
+
+                // Fetch the associated menu items
+                var listMenu = await (from o in _context.CustOrderChildren
+                                      join m in _context.Menus on o.MenuItemNo equals m.MenuItemNo
+                                      where o.OrderNo == order.OrderNo
+                                      select new MenuItemModel
+                                      {
+                                          MenuItemNo = o.MenuItemNo,
+                                          ItemName = m.ItemName,
+                                          Quantity = o.Quantity,
+                                          Price = m.Price
+                                      })
+                                      .ToListAsync();
+
+                // Create the InvoiceDetailModel to be passed to the view
+                var data = new InvoiceDetailModel
+                {
+                    Bill = bill,
+                    Order = order,
+                    ListMenu = listMenu
+                };
+
+                return View(data);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+        public async Task<InvoiceDetailModel> GetInvoiceDetails(int id)
+        {
+            var bill = await _context.CustomerInvoices
+                .Where(x => x.InvoiceNo == id)
+                .Select(x => new InvoiceModel
+                {
+                    InvoiceNo = x.InvoiceNo,
+                    InvoiceDate = x.InvoiceDate,
+                    TotalAmount = x.TotalAmount
+                })
+                .FirstOrDefaultAsync();
+
+            var order = await (from o in _context.CustOrders
+                               join c in _context.CustomerInvoices on o.OrderNo equals c.OrderNo
+                               where c.InvoiceNo == bill.InvoiceNo
+                               select new OrderModel
+                               {
+                                   OrderNo = o.OrderNo,
+                                   OrderDate = o.OrderDate,
+                                   CatererId = o.CatererId,
+                                   CustomerId = o.CustomerId,
+                                   DeliveryAddress = o.DeliveryAddress,
+                                   MaxPeople = o.MaxPeople,
+                                   MinPeople = o.MinPeople,
+                                   DeliveryDate = o.DeliveryDate,
+                                   OrderStatus = o.OrderStatus
+                               })
+                               .FirstOrDefaultAsync();
+
+            var listMenu = await (from o in _context.CustOrderChildren
+                                  join m in _context.Menus on o.MenuItemNo equals m.MenuItemNo
+                                  where o.OrderNo == order.OrderNo
+                                  select new MenuItemModel
+                                  {
+                                      MenuItemNo = o.MenuItemNo,
+                                      ItemName = m.ItemName, // Assuming Menu table has an ItemName field
+                                      Quantity = o.Quantity,
+                                      Price = m.Price
+                                  })
+                                  .ToListAsync();
+
+            var data = new InvoiceDetailModel
+            {
+                Bill = bill,
+                Order = order,
+                ListMenu = listMenu
+            };
+
+            return data;
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrderStatus(int orderId)
+        {
+            var order = await _context.CustOrders.FindAsync(orderId);
+            if (order == null)
+            {
+                return NotFound("Order not found.");
+            }
+
+            order.OrderStatus = "Success";
+            _context.CustOrders.Update(order);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("OrderHistory");
+        }
+
+        public IActionResult OrderHistory()
+        {
+            var id = _context.Caterers.Where(x=>x.Name == HttpContext.Session.GetString("UserName")).Select(x=>x.CatererId).FirstOrDefault();
+            var model = _context.CustOrders.Where(x => x.CatererId == id).ToList();
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

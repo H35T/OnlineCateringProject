@@ -1,0 +1,68 @@
+﻿@model IEnumerable<OnlineCateringProject.Models.CustOrder>
+
+@{
+    ViewData["Title"] = "Order History";
+    ViewData["Span"] = "List Order";
+    ViewData["Background"] = "page-title-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            @if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order No</th>
+                <th>Order Date</th>
+                <th>Delivery Date</th>
+                <th>Delivery Address</th>
+                <th>Min People</th>
+                <th>Max People</th>
+                <th>Order Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderNo</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                    <td>@order.DeliveryDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@order.DeliveryAddress</td>
+                    <td>@order.MinPeople</td>
+                    <td>@order.MaxPeople</td>
+                    <td>@order.OrderStatus</td>
+                    <td>
+                        <a href="@Url.Action("DetailBill", "Invoice", new { id = order.OrderNo })" class="btn btn-info">View Details</a>
+
+                        @if (order.OrderStatus != "Success")
+                        {
+                            <form asp-action="UpdateOrderStatus" method="post" style="display:inline;">
+                                <input type="hidden" name="orderId" value="@order.OrderNo" />
+                                <button type="submit" class="btn btn-success">Mark as Success</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        No orders found.
+    </div>
+}
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+
+        </div>
+    </div>
+</div>
+
+

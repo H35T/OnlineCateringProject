@@ -42,12 +42,12 @@ namespace OnlineCateringProject.Controllers
         public async Task<IActionResult> Create([FromBody]BookingRequest request)
         {
             try {
+                var customerId = _context.Customers.Where(x => x.Name == HttpContext.Session.GetString("UserName")).FirstOrDefault();
                 CustOrder custOrder = new()
                 {
                     OrderDate = DateTime.Now,
                     CatererId = request.CatererId,
-                    CustomerId = request.CustomerId,
-                    CostPerPlate = request.CostPerPlate,
+                    CustomerId = customerId.CustomerId,
                     DeliveryAddress = request.DeliveryAddress,
                     MaxPeople = request.MaxPeople,
                     MinPeople = request.MinPeople,

@@ -1,0 +1,89 @@
+﻿@model OnlineCateringProject.Models.InvoiceDetailModel
+@{
+    ViewData["Title"] = "Invoice Details";
+    ViewData["Span"] = "Detail Bill";
+    ViewData["Background"] = "page-title-1";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="invoice-details">
+                <h3>Invoice Information</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Invoice No</th>
+                        <td>@Model.Bill.InvoiceNo</td>
+                    </tr>
+                    <tr>
+                        <th>Invoice Date</th>
+                        <td>@Model.Bill.InvoiceDate</td>
+                    </tr>
+                    <tr>
+                        <th>Total Amount</th>
+                        <td>@Model.Bill.TotalAmount</td>
+                    </tr>
+                </table>
+
+                <h3>Order Information</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Order No</th>
+                        <td>@Model.Order.OrderNo</td>
+                    </tr>
+                    <tr>
+                        <th>Order Date</th>
+                        <td>@Model.Order.OrderDate</td>
+                    </tr>
+                    <tr>
+                        <th>Delivery Date</th>
+                        <td>@Model.Order.DeliveryDate</td>
+                    </tr>
+                    <tr>
+                        <th>Delivery Address</th>
+                        <td>@Model.Order.DeliveryAddress</td>
+                    </tr>
+                    <tr>
+                        <th>Min People</th>
+                        <td>@Model.Order.MinPeople</td>
+                    </tr>
+                    <tr>
+                        <th>Max People</th>
+                        <td>@Model.Order.MaxPeople</td>
+                    </tr>
+                    <tr>
+                        <th>Order Status</th>
+                        <td>@Model.Order.OrderStatus</td>
+                    </tr>
+                </table>
+
+                <h3>Menu Items</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Menu Item No</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListMenu)
+                        {
+                            <tr>
+                                <td>@item.MenuItemNo</td>
+                                <td>@item.ItemName</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            
+            </div>
+
+        </div>
+    </div>
+</div>
